@@ -25,6 +25,12 @@ $( function() {
                        $.getJSON( "https://api.github.com/repos/" + project.owner + "/" + project.repo + "/issues",
                                   function( response ) {
                                       console.log( response )
+                                      $.each( response, function( i, issue ) {
+                                          $tbody.append(
+                                              $('<tr/>')
+                                                  .append( $('<td/>').text( issue.title ) )
+                                          )
+                                      } )
                                   }
                                 )
                    }
