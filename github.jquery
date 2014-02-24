@@ -1,0 +1,33 @@
+$( function() {
+    var projects = [
+        { owner: 'DofH', repo: 'crowdfund' },
+        { owner: 'DofH', repo: 'liquid_vote' },
+        { owner: 'OneAcreCafe', repo: 'volunteers' },
+        { owner: 'OneAcreCafe', repo: 'costs' },
+        { owner: 'OneAcreCafe', repo: 'sales' },
+    ]
+
+    $.each( projects, function( i, project ) {
+        $.getJSON( "https://api.github.com/repos/" + project.owner + "/" + project.repo,
+                   function( response ) {
+                       var $table = $('<table/>')
+                       var $thead = $('<thead/>')
+                       var $tbody = $('<tbody/>')
+                       $thead.append(
+                           $('<tr/>').append(
+                               $('<th/>').attr( { colspan: 4 } ).text( response.name )
+                           )
+                       )
+                       $table.append( $thead ).append( $tbody )
+
+                       $('#content').append( $table )
+
+                       $.getJSON( "https://api.github.com/repos/" + project.owner + "/" + project.repo + "/issues",
+                                  function( response ) {
+                                      console.log( response )
+                                  }
+                                )
+                   }
+                 )
+    } )
+} )
