@@ -16,5 +16,14 @@ Crowdfund.ProjectsController = Ember.ArrayController.extend( {
 
             project.save()
         }
-    }
+    },
+
+    remaining: function() {
+        return this.filterBy( 'isCompleted', false ).get( 'length' )
+    }.property( '@each.isCompleted' ),
+
+    inflection: function() {
+        var remaining = this.get( 'remaining' )
+        return remaining === 1 ? 'project' : 'projects'
+    }.property( 'remaining' )
 } )

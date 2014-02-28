@@ -24,9 +24,19 @@
   </head>
   <body>
     <script type="text/x-handlebars" data-template-name="projects">
-      <p>Projects</p>
+      <p id="project-count">{{remaining}} {{inflection}}</p>
 
       <ul id="project-list">
+        {{#each itemController="project"}}
+          <li {{bind-attr class="isCompleted:completed isEditing:editing"}}>
+            {{#if isEditing}}
+              <input class='edit' />
+            {{else}}
+              {{input type="checkbox" checked=isCompleted class="toggle"}}
+              <label {{action "editProject" on="doubleClick"}}>{{name}}</label><button class="destroy"></button>
+            {{/if}}
+          </li>
+        {{/each}}
         {{#each itemController="project"}}
           <li {{bind-attr class="isCompleted:completed"}}>
             {{input type="checkbox" checked=isCompleted class="toggle"}}

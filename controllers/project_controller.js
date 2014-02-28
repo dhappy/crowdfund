@@ -1,4 +1,12 @@
 Crowdfund.ProjectController = Ember.ObjectController.extend( {
+    actions: {
+        editProject: function() {
+            this.set( 'isEditing', true )
+        }
+    },
+
+    isEditing: false,
+
     isCompleted: function( key, value ) {
         var model = this.get( 'model' )
 
