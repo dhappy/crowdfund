@@ -20,15 +20,16 @@
     <script type="text/javascript" src="router.js"></script>
     <script type="text/javascript" src="models/project.js"></script>
     <script type="text/javascript" src="controllers/projects_controller.js"></script>
+    <script type="text/javascript" src="controllers/project_controller.js"></script>
   </head>
   <body>
     <script type="text/x-handlebars" data-template-name="projects">
       <p>Projects</p>
 
       <ul id="project-list">
-        {{#each}}
+        {{#each itemController="project"}}
           <li {{bind-attr class="isCompleted:completed"}}>
-            <input type="checkbox" class="toggle"/>
+            {{input type="checkbox" checked=isCompleted class="toggle"}}
             <label>{{name}}</label><button class="destroy"></button>
           </li>
         {{/each}}

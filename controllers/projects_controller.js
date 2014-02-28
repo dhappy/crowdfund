@@ -17,4 +17,4 @@ Crowdfund.ProjectsController = Ember.ArrayController.extend( {
             project.save()
         }
     }
-})
+} )
