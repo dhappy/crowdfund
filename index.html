@@ -18,10 +18,23 @@
     <script type="text/javascript" src="github.jquery"></script>
     <script type="text/javascript" src="ember.js"></script>
     <script type="text/javascript" src="router.js"></script>
+    <script type="text/javascript" src="models/project.js"></script>
+    <script type="text/javascript" src="controllers/projects_controller.js"></script>
   </head>
   <body>
     <script type="text/x-handlebars" data-template-name="projects">
       <p>Projects</p>
+
+      <ul id="project-list">
+        {{#each}}
+          <li {{bind-attr class="isCompleted:completed"}}>
+            <input type="checkbox" class="toggle"/>
+            <label>{{name}}</label><button class="destroy"></button>
+          </li>
+        {{/each}}
+      </ul>
+
+      {{input type="text" id="new-project" placeholder="Project Name?" value=projName action="createProject"}}
     </script>
     <div class="container">
       <div id="content" class="jumbotron">
