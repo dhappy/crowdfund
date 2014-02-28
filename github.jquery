@@ -1,7 +1,8 @@
 $( function() {
-    var projects = [
-        { owner: 'DofH', repo: 'crowdfund' },
-        { owner: 'DofH', repo: 'liquid_vote' },
+    var projects = [ 
+        { owner: 'dhappy', repo: 'tour' },
+        { owner: 'dhappy', repo: 'crowdfund' },
+        { owner: 'dhappy', repo: 'liquid_vote' },
         { owner: 'OneAcreCafe', repo: 'volunteers' },
         { owner: 'OneAcreCafe', repo: 'costs' },
         { owner: 'OneAcreCafe', repo: 'sales' },
@@ -10,14 +11,19 @@ $( function() {
     $.each( projects, function( i, project ) {
         $.getJSON( "https://api.github.com/repos/" + project.owner + "/" + project.repo,
                    function( response ) {
-                       var $table = $('<table/>')
+                       var $table = $('<table/>').addClass( 'table' )
                        var $thead = $('<thead/>')
                        var $tbody = $('<tbody/>')
                        $thead.append(
-                           $('<tr/>').append(
-                               $('<th/>').attr( { colspan: 4 } ).text( response.name )
-                           )
+                           $('<tr/>')
+                               .append( $('<th/>').attr( { colspan: 4 } ).text( response.name.replace( /_/g, ' ' ) ) )
                        )
+
+                       var $row = $('<tr/>')
+                       $.each( ['Issue', 'Labels', 'Milestone', 'Bounty', 'Bids'], function( i, head ) {
+                           $row.append( $('<th/>').text( head ) )
+                       } )
+                       $thead.append( $row )
                        $table.append( $thead ).append( $tbody )
 
                        $('#content').append( $table )
@@ -26,9 +32,14 @@ $( function() {
                                   function( response ) {
                                       console.log( response )
                                       $.each( response, function( i, issue ) {
+                                          var labels = issue.labels.map( function( lbl ) { return lbl.name } ).join( ',' )
+                                          var milestone = issue.milestone ? issue.milestone.title : undefined
                                           $tbody.append(
                                               $('<tr/>')
                                                   .append( $('<td/>').text( issue.title ) )
+                                                  .append( $('<td/>').text( labels ) )
+                                                  .append( $('<td/>').text( milestone ) )
+                                                  .append( $('<td/>') )
                                           )
                                       } )
                                   }
