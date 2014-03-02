@@ -28,7 +28,7 @@
   <script src="vendor/couchapp/md5.js"></script>
   <script src="vendor/couchapp/jquery.mustache.js"></script>
 
-<!-- templates used by app.js -->
+  <!-- templates used by app.js -->
   <script id="new-message" type="text/x-mustache" charset="utf-8">
       <div class="avatar">
         {{#gravatar_url}}<img src="{{gravatar_url}}"/>{{/gravatar_url}}
@@ -54,6 +54,7 @@
                 </div>
               </div>
               <p>{{message}}</p>
+              <p>{{created_at}}</p>
               <div style="clear:left;"></div>
             </li>
           {{/items}}
