@@ -19,8 +19,9 @@
     <script type="text/javascript" src="ember.js"></script>
     <script type="text/javascript" src="router.js"></script>
     <script type="text/javascript" src="models/project.js"></script>
-    <script type="text/javascript" src="controllers/projects_controller.js"></script>
-    <script type="text/javascript" src="controllers/project_controller.js"></script>
+    <script type="text/javascript" src="controllers/projects.js"></script>
+    <script type="text/javascript" src="controllers/project.js"></script>
+    <script type="text/javascript" src="views/project/edit.js"></script>
   </head>
   <body>
     <script type="text/x-handlebars" data-template-name="projects">
@@ -30,17 +31,12 @@
         {{#each itemController="project"}}
           <li {{bind-attr class="isCompleted:completed isEditing:editing"}}>
             {{#if isEditing}}
-              <input class='edit' />
+              {{edit-project class="edit" value=name focus-out="acceptChanges" insert-newline="acceptChanges"}}
             {{else}}
               {{input type="checkbox" checked=isCompleted class="toggle"}}
-              <label {{action "editProject" on="doubleClick"}}>{{name}}</label><button class="destroy"></button>
+              <label {{action "editProject" on="doubleClick"}}>{{name}}</label>
+              <button {{action "removeTodo"}} class="destroy"></button>
             {{/if}}
-          </li>
-        {{/each}}
-        {{#each itemController="project"}}
-          <li {{bind-attr class="isCompleted:completed"}}>
-            {{input type="checkbox" checked=isCompleted class="toggle"}}
-            <label>{{name}}</label><button class="destroy"></button>
           </li>
         {{/each}}
       </ul>
