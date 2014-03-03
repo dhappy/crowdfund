@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  github_name: MyString
+  name: MyString
+  owner: 
+
+two:
+  github_name: MyString
+  name: MyString
+  owner: 
