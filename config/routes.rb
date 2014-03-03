@@ -1,4 +1,6 @@
 App::Application.routes.draw do
+  resources :milestones
+
   resources :issues
 
   resources :bids
