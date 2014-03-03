@@ -1,4 +1,6 @@
 App::Application.routes.draw do
+  resources :bids
+
   resources :bounties
 
   devise_for :users

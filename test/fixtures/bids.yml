@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  time: 1
+  bidder: 
+  amount: 9.99
+  issue: 
+
+two:
+  time: 1
+  bidder: 
+  amount: 9.99
+  issue: 

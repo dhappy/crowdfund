@@ -1,0 +1,22 @@
+= form_for @bid do |f|
+  - if @bid.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@bid.errors.count, "error")} prohibited this bid from being saved:"
+      %ul
+        - @bid.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :time
+    = f.number_field :time
+  .field
+    = f.label :bidder
+    = f.text_field :bidder
+  .field
+    = f.label :amount
+    = f.text_field :amount
+  .field
+    = f.label :issue
+    = f.text_field :issue
+  .actions
+    = f.submit 'Save'
