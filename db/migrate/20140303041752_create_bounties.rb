@@ -4,7 +4,7 @@ class CreateBounties < ActiveRecord::Migration
       t.datetime :expiration
       t.decimal :amount
       t.integer :currency
-      t.reference :poster
+      t.references :poster
 
       t.timestamps
     end

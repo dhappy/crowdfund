@@ -3,7 +3,7 @@ class CreateIssues < ActiveRecord::Migration
     create_table :issues do |t|
       t.string :name
       t.string :description
-      t.reference :milestone
+      t.references :milestone
 
       t.timestamps
     end

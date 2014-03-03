@@ -3,7 +3,7 @@ class CreateProjects < ActiveRecord::Migration
     create_table :projects do |t|
       t.string :github_name
       t.string :name
-      t.reference :owner
+      t.references :owner
 
       t.timestamps
     end

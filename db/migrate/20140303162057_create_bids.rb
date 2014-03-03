@@ -2,9 +2,9 @@ class CreateBids < ActiveRecord::Migration
   def change
     create_table :bids do |t|
       t.integer :time
-      t.reference :bidder
+      t.references :bidder
       t.decimal :amount
-      t.reference :issue
+      t.references :issue
 
       t.timestamps
     end

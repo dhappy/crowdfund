@@ -11,7 +11,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140303033946) do
+ActiveRecord::Schema.define(version: 20140303174307) do
+
+  create_table "bids", force: true do |t|
+    t.integer  "time"
+    t.integer  "bidder_id"
+    t.decimal  "amount"
+    t.integer  "issue_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+# Could not dump table "bounties" because of following NoMethodError
+#   undefined method `[]' for nil:NilClass
+
+  create_table "issues", force: true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "milestone_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "labels", force: true do |t|
+    t.string   "name"
+    t.string   "color"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "milestones", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "projects", force: true do |t|
+    t.string   "github_name"
+    t.string   "name"
+    t.integer  "owner_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
