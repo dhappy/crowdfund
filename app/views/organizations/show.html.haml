@@ -1,8 +1,13 @@
 %p#notice= notice
 
-%p
-  %b Name:
-  = @organization.name
+%ul
+  %li= "Name: #{@organization.name}"
+  - if @organization.projects.any?
+    %li
+      Projects:
+      %ul
+        - @organization.projects.each do |project|
+          %li= project.name
 
 = link_to 'Edit', edit_organization_path(@organization)
 \|
