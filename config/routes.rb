@@ -1,4 +1,6 @@
 App::Application.routes.draw do
+  resources :issues
+
   resources :bids
 
   resources :bounties
