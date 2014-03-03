@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  expiration: 2014-03-02 23:17:53
+  amount: 9.99
+  currency: 1
+  poster: 
+
+two:
+  expiration: 2014-03-02 23:17:53
+  amount: 9.99
+  currency: 1
+  poster: 

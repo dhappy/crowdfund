@@ -1,0 +1,25 @@
+%h1 Listing bounties
+
+%table
+  %tr
+    %th Expiration
+    %th Amount
+    %th Currency
+    %th Poster
+    %th
+    %th
+    %th
+
+  - @bounties.each do |bounty|
+    %tr
+      %td= bounty.expiration
+      %td= bounty.amount
+      %td= bounty.currency
+      %td= bounty.poster
+      %td= link_to 'Show', bounty
+      %td= link_to 'Edit', edit_bounty_path(bounty)
+      %td= link_to 'Destroy', bounty, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Bounty', new_bounty_path

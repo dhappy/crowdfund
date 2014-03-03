@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Expiration:
+  = @bounty.expiration
+%p
+  %b Amount:
+  = @bounty.amount
+%p
+  %b Currency:
+  = @bounty.currency
+%p
+  %b Poster:
+  = @bounty.poster
+
+= link_to 'Edit', edit_bounty_path(@bounty)
+\|
+= link_to 'Back', bounties_path

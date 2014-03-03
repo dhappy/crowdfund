@@ -1,0 +1,22 @@
+= form_for @bounty do |f|
+  - if @bounty.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@bounty.errors.count, "error")} prohibited this bounty from being saved:"
+      %ul
+        - @bounty.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :expiration
+    = f.datetime_select :expiration
+  .field
+    = f.label :amount
+    = f.text_field :amount
+  .field
+    = f.label :currency
+    = f.number_field :currency
+  .field
+    = f.label :poster
+    = f.text_field :poster
+  .actions
+    = f.submit 'Save'
