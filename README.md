@@ -1,33 +1,12 @@
-## Generated CouchApp
+Crowdfunding
+============
 
-This is meant to be an example CouchApp and to ship with most of the CouchApp goodies.
+I am interested in creating the open source software necessary to run a restaurant: [sales](https://github.com/OneAcreCafe/sales), [costs](https://github.com/OneAcreCafe/costs), and [scheduling](https://github.com/OneAcreCafe/volunteers). I also want to rent [housing](https://github.com/dhappy/housing). The goal is a user signs up for a [tour](https://github.com/dhappy/tour) and the software helps them work out a trip schedule with accommodations and labor to pay for it.
 
-Clone with git:
+To get all this done I need help. I'm particularly interested in the [bounty source](//bountysource.com) model. People post rewards for closing issues. I have three major issues with bountysource.com:
 
-    git clone git://github.com/couchapp/example.git
-    cd example
+* Though they are [soon to support bitcoins](https://github.com/bountysource/frontend/issues/390), they will convert them to dollars.
+* You can place bids on issues, but those bids aren't visible in the project view. I want totals for what it will cost to reach various milestones.
+* [It doesn't work.](https://github.com/bountysource/frontend/issues/470)
 
-Install with 
-    
-    couchapp push . http://localhost:5984/example
-
-or (if you have security turned on)
-
-    couchapp push . http://adminname:adminpass@localhost:5984/example
-  
-You can also create this app by running
-
-    couchapp generate example && cd example
-    couchapp push . http://localhost:5984/example
-
-Deprecated: *couchapp generate proto && cd proto*
-
-
-## Todo
-
-* factor CouchApp Commonjs to jquery.couch.require.js
-* use $.couch.app in app.js
-
-## License
-
-Apache 2.0
+So this is an attempt to create an alternative. I really want to play with [CouchDB](http://couchdb.apache.org), but it doesn't have GitHub auth support. I really shouldn't use this as an opportunity to learn it.
