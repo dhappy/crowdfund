@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140303193051) do
+ActiveRecord::Schema.define(version: 20140303205054) do
+
+  create_table "associations", force: true do |t|
+    t.integer  "organization_id"
+    t.integer  "project_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "associations", ["organization_id"], name: "index_associations_on_organization_id"
+  add_index "associations", ["project_id"], name: "index_associations_on_project_id"
 
   create_table "bids", force: true do |t|
     t.integer  "time"
