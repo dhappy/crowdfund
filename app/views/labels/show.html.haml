@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @label.name
+%p
+  %b Color:
+  = @label.color
+
+= link_to 'Edit', edit_label_path(@label)
+\|
+= link_to 'Back', labels_path

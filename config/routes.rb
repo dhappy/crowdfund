@@ -1,4 +1,6 @@
 App::Application.routes.draw do
+  resources :labels
+
   resources :milestones
 
   resources :issues
