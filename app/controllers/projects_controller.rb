@@ -1,3 +1,6 @@
+require 'open-uri'
+require 'pp'
+
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
@@ -24,7 +27,15 @@ class ProjectsController < ApplicationController
   # POST /projects
   # POST /projects.json
   def create
-    @project = Project.new(project_params)
+    params = project_params
+
+    resp = JSON.parse open("https://api.github.com/repos/%s/%s" % [params[:owner], params[:github_name]]).read
+
+    pp resp
+
+    params[:owner] = User.find_or_create_by_github_name params[:owner]
+
+    @project = Project.new params
 
     respond_to do |format|
       if @project.save
