@@ -31,18 +31,23 @@ class ProjectsController < ApplicationController
 
     params[:name] ||= params[:github_name].gsub(/_/, ' ').titleize
     
-    resp = JSON.parse open("https://api.github.com/repos/%s/%s" % [params[:owner], params[:github_name]]).read
+    info = JSON.parse open("https://api.github.com/repos/%s/%s" % [params[:owner], params[:github_name]]).read
 
-    params[:description] = resp['description']
+    params[:description] = info['description']
 
-    pp resp
+    issues = JSON.parse open("https://api.github.com/repos/%s/%s/issues" % [params[:owner], params[:github_name]]).read
+
+    issues.each do |issue|
+      puts "Title: #{issue['title']}"
+      puts "Milestone: #{issue.try(:[], 'milestone').try(:[], 'title')}"
+    end
 
     params[:owner] = User.find_or_create_by github_name: params[:owner]
 
     @project = Project.new params
 
     respond_to do |format|
-      if @project.save
+      if false and @project.save
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
         format.json { render action: 'show', status: :created, location: @project }
       else
