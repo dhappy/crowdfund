@@ -13,7 +13,7 @@
     %tr
       %td= project.github_name
       %td= project.name
-      %td= project.owner
+      %td= project.owner.github_name
       %td= link_to 'Show', project
       %td= link_to 'Edit', edit_project_path(project)
       %td= link_to 'Destroy', project, :method => :delete, :data => { :confirm => 'Are you sure?' }

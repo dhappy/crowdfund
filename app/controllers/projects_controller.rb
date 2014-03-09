@@ -29,11 +29,15 @@ class ProjectsController < ApplicationController
   def create
     params = project_params
 
+    params[:name] ||= params[:github_name].gsub(/_/, ' ').titleize
+    
     resp = JSON.parse open("https://api.github.com/repos/%s/%s" % [params[:owner], params[:github_name]]).read
+
+    params[:description] = resp['description']
 
     pp resp
 
-    params[:owner] = User.find_or_create_by_github_name params[:owner]
+    params[:owner] = User.find_or_create_by github_name: params[:owner]
 
     @project = Project.new params
 
