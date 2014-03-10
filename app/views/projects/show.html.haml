@@ -12,6 +12,9 @@
 %p
   %b Owner:
   = @project.owner.github_name
+%ul
+  - @project.issues.each do |issue|
+    %li= issue.name
 
 = link_to 'Edit', edit_project_path(@project)
 \|

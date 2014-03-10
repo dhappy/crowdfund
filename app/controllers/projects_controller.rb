@@ -42,7 +42,7 @@ class ProjectsController < ApplicationController
       issue.name = issue_res['title']
       issue.milestone = Milestone.find_or_create_by name: issue_res.try(:[], 'milestone').try(:[], 'title')
       issue.description = issue_res['body']
-      pp issue
+      issue.save
     end
 
     params[:owner] = User.find_or_create_by github_name: params[:owner]
@@ -50,7 +50,7 @@ class ProjectsController < ApplicationController
     @project = Project.new params
 
     respond_to do |format|
-      if false and @project.save
+      if @project.save
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
         format.json { render action: 'show', status: :created, location: @project }
       else
