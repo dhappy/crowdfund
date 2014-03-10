@@ -4,4 +4,11 @@ class Issue < ActiveRecord::Base
   has_many :bids
   has_many :bounties
   has_many :labels
+
+  def leading_bid
+  end
+
+  def total_bounties
+    bounties.collect(&:amount).inject(:+)
+  end
 end
