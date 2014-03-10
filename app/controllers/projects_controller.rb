@@ -29,11 +29,14 @@ class ProjectsController < ApplicationController
   def create
     params = project_params
 
-    params[:name] ||= params[:github_name].gsub(/_/, ' ').titleize
-    
     info = JSON.parse open("https://api.github.com/repos/%s/%s" % [params[:owner], params[:github_name]]).read
 
-    params[:description] = info['description']
+    @project = Project.find_or_create_by id: info['id']
+
+    @project.github_name = params[:github_name]
+    @project.name = params[:github_name].gsub(/_/, ' ').titleize
+    @project.description = info['description']
+    @project.owner = User.find_or_create_by github_name: params[:owner]
 
     issues = JSON.parse open("https://api.github.com/repos/%s/%s/issues" % [params[:owner], params[:github_name]]).read
 
@@ -42,12 +45,9 @@ class ProjectsController < ApplicationController
       issue.name = issue_res['title']
       issue.milestone = Milestone.find_or_create_by name: issue_res.try(:[], 'milestone').try(:[], 'title')
       issue.description = issue_res['body']
+      issue.project = @project
       issue.save
     end
-
-    params[:owner] = User.find_or_create_by github_name: params[:owner]
-
-    @project = Project.new params
 
     respond_to do |format|
       if @project.save

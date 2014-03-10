@@ -1,20 +1,15 @@
 %p#notice= notice
 
-%p
-  %b Github name:
-  = @project.github_name
-%p
-  %b Name:
-  = @project.name
-%p
-  %b Description:
-  = @project.description
-%p
-  %b Owner:
-  = @project.owner.github_name
 %ul
-  - @project.issues.each do |issue|
-    %li= issue.name
+  %li= "Github name: #{@project.github_name}"
+  %li= "Name: #{@project.name}"
+  %li= "Description: #{@project.description}"
+  %li= "Owner: #{@project.owner.github_name}"
+  %li
+    Issues:
+    %ul
+      - @project.issues.each do |issue|
+        %li= issue.name
 
 = link_to 'Edit', edit_project_path(@project)
 \|
