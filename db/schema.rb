@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140307032131) do
+ActiveRecord::Schema.define(version: 20140310004200) do
 
   create_table "assignments", force: true do |t|
     t.integer  "organization_id"
@@ -51,7 +51,10 @@ ActiveRecord::Schema.define(version: 20140307032131) do
     t.integer  "milestone_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "project_id"
   end
+
+  add_index "issues", ["project_id"], name: "index_issues_on_project_id"
 
   create_table "labels", force: true do |t|
     t.string   "name"
