@@ -6,9 +6,10 @@ class Issue < ActiveRecord::Base
   has_many :labels
 
   def leading_bid
+    bids.first
   end
 
   def total_bounties
-    bounties.collect(&:amount).inject(:+)
+    bounties.collect(&:amount).sum
   end
 end
