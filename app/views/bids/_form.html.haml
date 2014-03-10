@@ -17,6 +17,6 @@
     = f.text_field :amount
   .field
     = f.label :issue
-    = f.text_field :issue
+    = f.collection_select :issue_id, Issue.all, :id, :name, { selected: @bid.issue.try(:id) }, { class: 'form-control' }
   .actions
     = f.submit 'Save'

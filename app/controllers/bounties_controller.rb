@@ -15,6 +15,8 @@ class BountiesController < ApplicationController
   # GET /bounties/new
   def new
     @bounty = Bounty.new
+
+    @bounty.issue = Issue.find params[:issue]
   end
 
   # GET /bounties/1/edit

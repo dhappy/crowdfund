@@ -11,4 +11,4 @@
       %tr
         %td= issue.name
         %td= issue.leading_bid
-        %td= link_to issue.total_bounties, new_bid_path
+        %td= link_to issue.total_bounties, new_bounty_path(issue: issue.id)
