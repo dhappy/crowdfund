@@ -37,9 +37,12 @@ class ProjectsController < ApplicationController
 
     issues = JSON.parse open("https://api.github.com/repos/%s/%s/issues" % [params[:owner], params[:github_name]]).read
 
-    issues.each do |issue|
-      puts "Title: #{issue['title']}"
-      puts "Milestone: #{issue.try(:[], 'milestone').try(:[], 'title')}"
+    issues.each do |issue_res|
+      issue = Issue.find_or_create_by id: issue_res['id']
+      issue.name = issue_res['title']
+      issue.milestone = Milestone.find_or_create_by name: issue_res.try(:[], 'milestone').try(:[], 'title')
+      issue.description = issue_res['body']
+      pp issue
     end
 
     params[:owner] = User.find_or_create_by github_name: params[:owner]
