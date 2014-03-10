@@ -42,8 +42,15 @@ ActiveRecord::Schema.define(version: 20140310004200) do
     t.datetime "updated_at"
   end
 
-# Could not dump table "bounties" because of following NoMethodError
-#   undefined method `[]' for nil:NilClass
+  create_table "bounties", force: true do |t|
+    t.datetime "expiration"
+    t.decimal  "amount"
+    t.integer  "currency"
+    t.integer  "poster_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "issue_id"
+  end
 
   create_table "issues", force: true do |t|
     t.string   "name"
