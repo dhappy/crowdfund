@@ -20,6 +20,7 @@ gem 'devise'
 gem 'cancan'
 gem 'omniauth-facebook', '= 1.4.0'
 gem 'omniauth-twitter'
+gem 'omniauth-github'
 
 # Environment variables in config/application.yml
 gem 'figaro'
