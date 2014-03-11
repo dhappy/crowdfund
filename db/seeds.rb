@@ -5,3 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+org = Organization.create name: 'Department of Happiness'
+projs = [ { owner: :OneAcreCafe, repo: :volunteers } ]
+projs.each do |proj|
+  
+end
