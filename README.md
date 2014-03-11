@@ -10,3 +10,11 @@ To get all this done I need help. I'm particularly interested in the [bounty sou
 * [It doesn't work.](https://github.com/bountysource/frontend/issues/470)
 
 So, this is an attempt to create an alternative. It will be a rails app.
+
+-----
+
+One possible issue with this model is duplication of effort. Alice and Bob both hope to win a bounty so they set to work. Alice finishes first and collects. Bob's work is likely discarded.
+
+I'm uncertain what to do about this other than publishing which users are simultaneously working on an issue.
+
+I also don't want to rush people. I'd like to be able to assign a developer to an issue with an expiration, and they have first shot at the bounty within that timeframe.
