@@ -7,15 +7,70 @@
     = csrf_meta_tags
     =# favicon_link_tag 'favicon.png', rel: 'icon', type: 'image/png'
   %body
+    .navbar.navbar-default.navbar-fixed-top{role: 'navigation'}
+      .container
+        .navbar-header
+          %button.navbar-toggle{ data: { toggle: 'collapse', target: '.navbar-collapse' } }
+            %span.sr-only Toggle navigation
+            %span.icon-bar
+          = link_to root_path, class: 'navbar-brand' do
+            = image_tag 'http://dhappy.org/.../image/logo/One%20Acre%20Cafe/', id: 'logo'
+            Volunteers
+        .navbar-collapse.collapse
+          %ul.nav.navbar-nav
+            %li
+            %li{ class: params[:controller] == 'bounties' ? 'active dropdown' : 'dropdown' }
+              %a.dropdown-toggle{ href: '#', data: { toggle: 'dropdown' } }
+                Bounties
+                %b.caret
+              %ul.dropdown-menu
+                %li.tabled
+                  = link_to 'View All', bounties_path, class: :iconed
+                - if can? :create, Bounty or can? :destroy, Bounty
+                  %li.divider
+                - if can? :create, Bounty
+                  %li= link_to 'New', new_bounty_path
+                - if can? :destroy, Bounty
+                  %li= link_to 'Delete', delete_bounties_path
+
+            %li{ class: params[:controller] == 'bids' ? 'active dropdown' : 'dropdown' }
+              %a.dropdown-toggle{ href: '#', data: { toggle: 'dropdown' } }
+                Bids
+                %b.caret
+              %ul.dropdown-menu
+                %li.tabled
+                  = link_to 'View All', bids_path, class: :iconed
+                - if can? :create, Bid or can? :destroy, Bid
+                  %li.divider
+                - if can? :create, Bid
+                  %li= link_to 'New', new_bid_path
+                - if can? :destroy, Bid
+                  %li= link_to 'Delete', delete_bids_path
+
+            - if can? :read, User
+              %li{ class: params[:controller] == 'users' ? 'active dropdown' : 'dropdown' }
+                %a.dropdown-toggle{ href: '#', data: { toggle: 'dropdown' } }
+                  Users
+                  %b.caret
+                %ul.dropdown-menu
+                  %li= link_to 'List', users_path
+                  - if can? :create, User
+                    %li= link_to 'New', new_user_path
+                  - if current_user.try(:role?, :admin)
+                    %li= link_to 'Roles', roles_path
+
+            %li{ class: (params[:controller] == 'pages' and params[:action] == 'about') ? 'active' : nil }
+              = link_to 'About', about_path
+
+          %ul.nav.navbar-nav.navbar-right
+            - if user_signed_in?
+              %li= link_to current_user.full_name, edit_user_registration_path
+              %li= link_to "Logout", destroy_user_session_path, method: :delete
+            - else
+              %li= link_to "Sign Up", new_user_registration_path
+              %li= link_to "Login", new_user_session_path
+
     %p#notice.alert.alert-info.hide= notice
     %p#alert.alert.alert-danger.hide= alert
-
-    %ul
-      - if user_signed_in?
-        %li= link_to current_user.full_name, edit_user_registration_path
-        %li= link_to "Logout", destroy_user_session_path, method: :delete
-      - else
-        %li= link_to "Sign Up", new_user_registration_path
-        %li= link_to "Login", new_user_session_path
 
     = yield
