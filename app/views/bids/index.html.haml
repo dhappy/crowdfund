@@ -13,9 +13,9 @@
   - @bids.each do |bid|
     %tr
       %td= bid.time
-      %td= bid.bidder
+      %td= bid.bidder.email
       %td= bid.amount
-      %td= bid.issue
+      %td= bid.issue.description
       %td= link_to 'Show', bid
       %td= link_to 'Edit', edit_bid_path(bid)
       %td= link_to 'Destroy', bid, :method => :delete, :data => { :confirm => 'Are you sure?' }

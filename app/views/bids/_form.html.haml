@@ -9,14 +9,10 @@
   .field
     = f.label :time
     = f.number_field :time
-  .field
-    = f.label :bidder
-    = f.text_field :bidder
+
   .field
     = f.label :amount
     = f.text_field :amount
-  .field
-    = f.label :issue
-    = f.collection_select :issue_id, Issue.all, :id, :name, { selected: @bid.issue.try(:id) }, { class: 'form-control' }
+  = f.hidden_field :issue_id
   .actions
     = f.submit 'Save'

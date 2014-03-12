@@ -14,7 +14,8 @@ class BidsController < ApplicationController
 
   # GET /bids/new
   def new
-    @bid = Bid.new
+    @bid = Bid.new({issue_id: params[:issue]})
+
   end
 
   # GET /bids/1/edit
@@ -25,8 +26,8 @@ class BidsController < ApplicationController
   # POST /bids.json
   def create
     @bid = Bid.new(bid_params)
-
-    respond_to do |format|
+    @bid.bidder = current_user
+      respond_to do |format|
       if @bid.save
         format.html { redirect_to @bid, notice: 'Bid was successfully created.' }
         format.json { render action: 'show', status: :created, location: @bid }
@@ -69,6 +70,6 @@ class BidsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bid_params
-      params.require(:bid).permit(:time, :bidder, :amount, :issue)
+      params.require(:bid).permit(:time, :amount, :issue_id)
     end
 end
