@@ -6,7 +6,9 @@ class Issue < ActiveRecord::Base
   has_many :labels
 
   def leading_bid
-    bids.first
+   # bids.first
+    bid_first = bids.first
+    bid_first.nil? ? nil : bid_first[:id]
   end
 
   def total_bounties

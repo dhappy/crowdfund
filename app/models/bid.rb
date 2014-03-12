@@ -1,4 +1,4 @@
 class Bid < ActiveRecord::Base
-  has_one :bidder, class_name: 'User'
+  belongs_to :bidder, class_name: 'User'
   belongs_to :issue
 end
