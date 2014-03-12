@@ -5,13 +5,13 @@
   = @bid.time
 %p
   %b Bidder:
-  = @bid.bidder
+  = @bid.bidder.email
 %p
   %b Amount:
   = @bid.amount
 %p
   %b Issue:
-  = @bid.issue
+  = @bid.issue.description
 
 = link_to 'Edit', edit_bid_path(@bid)
 \|
