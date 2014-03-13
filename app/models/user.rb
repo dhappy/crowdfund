@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   validates_confirmation_of :password, on: :create
   validates_length_of :password, within: Devise.password_length, allow_blank: true
 
+  has_and_belongs_to_many :roles, -> { uniq }
   has_many :projects, class_name: 'Project', foreign_key: 'owner_id'
   has_many :organizations
   has_many :bounties
