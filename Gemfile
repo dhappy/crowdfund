@@ -14,7 +14,6 @@ group :production do
 end
 
 gem 'haml-rails'
-gem 'bootstrap-sass-rails', '~> 3.0.3'
 
 gem 'devise'
 gem 'cancan'
@@ -27,6 +26,7 @@ gem 'figaro'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
+gem 'bootstrap-sass'
 
 # Markdown for pages
 gem 'rdiscount'
