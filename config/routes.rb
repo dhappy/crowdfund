@@ -1,4 +1,6 @@
 App::Application.routes.draw do
+  resources :roles
+
   resources :organizations
 
   resources :projects

@@ -14,4 +14,8 @@ class User < ActiveRecord::Base
   has_many :organizations
   has_many :bounties
   has_many :bids
+
+  def role? role
+    roles.collect(&:name).map(&:downcase).include? role.to_s
+  end
 end
