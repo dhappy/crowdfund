@@ -16,7 +16,7 @@ class BountiesController < ApplicationController
   def new
     @bounty = Bounty.new
 
-    @bounty.issue = Issue.find params[:issue]
+    @bounty.issue = Issue.find params[:issue] if params[:issue]
   end
 
   # GET /bounties/1/edit
