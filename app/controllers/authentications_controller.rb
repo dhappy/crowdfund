@@ -1,64 +1,24 @@
 class AuthenticationsController < ApplicationController
   before_action :set_authentication, only: [:show, :edit, :update, :destroy]
 
-  # GET /authentications
-  # GET /authentications.json
   def index
-    @authentications = Authentication.all
+    @authentications = current_user.authentications if current_user
   end
-
-  # GET /authentications/1
-  # GET /authentications/1.json
-  def show
-  end
-
-  # GET /authentications/new
-  def new
-    @authentication = Authentication.new
-  end
-
-  # GET /authentications/1/edit
-  def edit
-  end
-
-  # POST /authentications
-  # POST /authentications.json
+  
   def create
-    @authentication = Authentication.new(authentication_params)
-
-    respond_to do |format|
-      if @authentication.save
-        format.html { redirect_to @authentication, notice: 'Authentication was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @authentication }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @authentication.errors, status: :unprocessable_entity }
-      end
-    end
+    render text: request.env["omniauth.auth"].to_yaml
+    return
+    auth = request.env['omniauth.auth']
+    current_user.authentications.find_or_create_by_provider_and_uid(auth['provider'], auth['uid'])
+    flash[:notice] = "Authentication successful."
+    redirect_to authentications_url
   end
-
-  # PATCH/PUT /authentications/1
-  # PATCH/PUT /authentications/1.json
-  def update
-    respond_to do |format|
-      if @authentication.update(authentication_params)
-        format.html { redirect_to @authentication, notice: 'Authentication was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @authentication.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /authentications/1
-  # DELETE /authentications/1.json
+  
   def destroy
+    @authentication = current_user.authentications.find(params[:id])
     @authentication.destroy
-    respond_to do |format|
-      format.html { redirect_to authentications_url }
-      format.json { head :no_content }
-    end
+    flash[:notice] = "Successfully destroyed authentication."
+    redirect_to authentications_url
   end
 
   private

@@ -15,19 +15,13 @@ class User < ActiveRecord::Base
   has_many :organizations
   has_many :bounties
   has_many :bids
+  has_many :authentications
+
+  def full_name
+    email || 'No Name'
+  end
 
   def role? role
     roles.collect(&:name).map(&:downcase).include? role.to_s
-  end
-
-  def self.from_omniauth(auth)
-    where(auth.slice(:provider, :uid)).first_or_create do |user|
-      user.provider = auth.provider
-      user.uid = auth.uid
-      user.email = auth.info.email
-      user.given_name = auth.info.first_name
-      user.family_name = auth.info.last_name
-      user.nickname = auth.info.nickname
-    end
   end
 end

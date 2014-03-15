@@ -10,5 +10,5 @@
     - @project.issues.each do |issue|
       %tr
         %td= issue.name
-        %td= link_to issue.leading_bid || '✖', new_bid_path(issue: issue.id)
+        %td= link_to (issue.leading_bid ? number_to_currency(issue.leading_bid.try(:amount)) : '✖'), new_bid_path(issue: issue.id)
         %td= link_to issue.total_bounties, new_bounty_path(issue: issue.id)
