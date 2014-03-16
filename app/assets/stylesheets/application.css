@@ -12,7 +12,8 @@
  *= require_tree .
  */
 
-@import "bootstrap.css";
+@import "bootstrap"; /* works on Heroku */
+@import "bootstrap.css"; /* works in development */
 
 #logo {
     max-width: 1em;
