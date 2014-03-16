@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 20140316144029) do
   end
 
   create_table "issues", force: true do |t|
-    t.string   "name"
+    t.text     "name"
     t.text     "description"
     t.integer  "milestone_id"
     t.datetime "created_at"
@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(version: 20140316144029) do
   end
 
   create_table "organizations", force: true do |t|
-    t.string   "name"
+    t.text     "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -23,6 +23,8 @@ class Project < ActiveRecord::Base
     issues.each do |issue_res|
       issue = Issue.find_or_create_by id: issue_res['id']
       issue.name = issue_res['title']
+      issue.url = issue_res['html_url']
+      puts issue_res if not issue.url
       issue.milestone = Milestone.find_or_create_by name: issue_res.try(:[], 'milestone').try(:[], 'title')
       issue.description = issue_res['body']
       issue.project = project
