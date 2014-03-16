@@ -1,7 +1,7 @@
 %table.table.table-striped
   %thead
     %tr
-      %th{ colspan: 3 }= @project.name
+      %th{ colspan: 3 }= link_to @project.name, @project
     %tr
       %th Name
       %th Bids
@@ -11,4 +11,4 @@
       %tr
         %td= link_to issue.name, issue.url
         %td= link_to (issue.leading_bid ? number_to_currency(issue.leading_bid.try(:amount)) : '✖'), new_bid_path(issue: issue.id)
-        %td= link_to issue.total_bounties, new_bounty_path(issue: issue.id)
+        %td= link_to number_to_currency(issue.total_bounties), new_bounty_path(issue: issue.id)

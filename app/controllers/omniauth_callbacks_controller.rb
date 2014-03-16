@@ -2,7 +2,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def all
     omniauth = request.env['omniauth.auth']
 
-    authentication = Authentication.find_by_provider_and_uid omniauth.provider, omniauth.uid
+    authentication = Authentication.find_by_provider_and_uid omniauth.provider, omniauth.uid.to_s
     user = if authentication
       flash.notice = 'Signed in successfully.'
       authentication.user

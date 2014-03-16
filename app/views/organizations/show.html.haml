@@ -8,8 +8,7 @@
       %ul
         - @organization.projects.each do |project|
           - @project = project
-          %li= @project.name
-          = render 'projects/table'
+          %li= render 'projects/table'
 
 = link_to 'Edit', edit_organization_path(@organization)
 \|
