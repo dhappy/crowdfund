@@ -1,7 +1,9 @@
 %p#notice= notice
 
 %ul
-  %li= "Github name: #{@project.github_name}"
+  %li
+    Github name:
+    = link_to @project.github_name, 'https://github.com/%s/%s' % [@project.owner.github_name, @project.github_name]
   %li= "Name: #{@project.name}"
   %li= "Description: #{@project.description}"
   %li= "Owner: #{@project.owner.github_name}"
