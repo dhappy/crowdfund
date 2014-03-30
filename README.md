@@ -1,7 +1,7 @@
 Crowdfunding
 ============
 
-I am interested in creating the open source software necessary to run a restaurant: [sales](https://github.com/OneAcreCafe/sales), [costs](https://github.com/OneAcreCafe/costs), and [scheduling](https://github.com/OneAcreCafe/volunteers). I also want to rent [housing](https://github.com/dhappy/housing). The goal is a user signs up for a [tour](https://github.com/dhappy/tour) and the software helps them work out a trip schedule with accommodations and labor to pay for it.
+I want to replace the economy with a transparent computer moderated version starting with a restaurant. This software is to gather cost estimates and allow crowdfunding of the software to manage [sales](https://github.com/OneAcreCafe/sales), [costs](https://github.com/OneAcreCafe/costs), and [scheduling](https://github.com/OneAcreCafe/labor). I also want to rent [housing](https://github.com/dhappy/housing). The goal is a user signs up for a [tour](https://github.com/dhappy/tour) and the software helps them work out a trip schedule with accommodations and labor to pay for it.
 
 To get all this done I need help. I'm particularly interested in the [bounty source](//bountysource.com) model. People post rewards for closing issues. I have three major issues with bountysource.com:
 
