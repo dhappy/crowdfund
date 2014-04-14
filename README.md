@@ -1,20 +1,14 @@
 Crowdfunding
 ============
 
-I want to replace the economy with a transparent computer moderated version starting with a restaurant. This software is to gather cost estimates and allow crowdfunding of the software to manage [sales](https://github.com/OneAcreCafe/sales), [costs](https://github.com/OneAcreCafe/costs), and [scheduling](https://github.com/OneAcreCafe/labor). I also want to rent [housing](https://github.com/dhappy/housing). The goal is a user signs up for a [tour](https://github.com/dhappy/tour) and the software helps them work out a trip schedule with accommodations and labor to pay for it.
+I want to replace the economy with a transparent computer moderated version starting with a restaurant. This software is to gather cost estimates and allow crowdfunding of the software to manage [sales](https://github.com/OneAcreCafe/sales), [costs](https://github.com/OneAcreCafe/costs), and [scheduling](https://github.com/OneAcreCafe/labor). I also want to rent [housing](https://github.com/dhappy/housing). The goal is a user signs up for a [tour](https://github.com/dhappy/tour) and the software helps them work out a trip schedule with accommodations and labor to pay for it. All the data for all the companies is completely open so systems are able to optimize as widely as possible.
 
-To get all this done I need help. I'm particularly interested in the [bounty source](//bountysource.com) model. People post rewards for closing issues. I have three major issues with bountysource.com:
+To get all this done I need help. I like the [bounty source](//bountysource.com) model, but I think more could be done to encourage participation. Specifically:
 
-* Though they are [soon to support bitcoins](https://github.com/bountysource/frontend/issues/390), they will convert them to dollars.
-* You can place bids on issues, but those bids aren't visible in the project view. I want totals for what it will cost to reach various milestones.
-* [It doesn't work.](https://github.com/bountysource/frontend/issues/470)
+1. Developers can be given claim on a bug. They then have a up until an expiration date to close the issue.
+2. The ability to nest issues. For example, [Port to CouchDB](https://github.com/wholcomb/habit_tracker/issues/12) could be taken by a management/design company and they outline subtasks necessary for completion; "implement habits view", etc.
+3. Programmers place bids in terms of hours to complete and an hourly rate.
+4. Projects show fundraising totals in terms of bids.
+5. Bitcoins supported and used as a store of value.
+6. Software that accepts micropayments that go directly to programmers for unpaid work.
 
-So, this is an attempt to create an alternative. It will be a rails app.
-
------
-
-One possible issue with this model is duplication of effort. Alice and Bob both hope to win a bounty so they set to work. Alice finishes first and collects. Bob's work is likely discarded.
-
-I'm uncertain what to do about this other than publishing which users are simultaneously working on an issue.
-
-I also don't want to rush people. I'd like to be able to assign a developer to an issue with an expiration, and they have first shot at the bounty within that timeframe.
