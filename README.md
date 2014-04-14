@@ -11,4 +11,5 @@ To get all this done I need help. I like the [bounty source](//bountysource.com)
 4. Projects show fundraising totals in terms of bids.
 5. Bitcoins supported and used as a store of value.
 6. Software that accepts micropayments that go directly to programmers for unpaid work.
-
+7. Issues are searchable topically, "ruby on rails", "javascript", etc.
+8. Users can get scheduled announcements of available jobs.
