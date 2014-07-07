@@ -7,7 +7,5 @@
 %ul
   - @issue.bids.each do |bid|
     %li
-      = bid.bidder.github_name
-      = bid.min
-      -
-      = bid.max
+      =# link_to bid.bidder.username, bid.bidder
+      = "#{bid.bidder.username}: #{bid.min}-#{bid.max}"

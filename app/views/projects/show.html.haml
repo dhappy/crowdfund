@@ -4,7 +4,7 @@
   #project
     %p#notice= notice
 
-    %h1= link_to @project.github_name, 'https://github.com/%s/%s' % [@project.owner.github_name, @project.github_name]
+    %h1= link_to @project.github_name, 'https://github.com/%s/%s' % [@project.owner.username, @project.github_name]
 
     %p= @project.description
 
@@ -30,7 +30,7 @@
             .col-xs-1= issue.bids.collect(&:max).max
             - if user_signed_in?
               - bid = issue.bids.where(bidder: current_user).first || Bid.new(issue: issue)
-              = form_for bid do |f|
+              = form_for bid, html: { class: :estimate } do |f|
                 = f.hidden_field :issue_id
                 .col-xs-1= f.text_field :min
                 .col-xs-1= f.text_field :max

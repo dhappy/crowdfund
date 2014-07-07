@@ -1,25 +1,24 @@
-%h1 Listing bids
+%h1 Listing Bids
 
-%table
-  %tr
-    %th Time
-    %th Bidder
-    %th Amount
-    %th Issue
-    %th
-    %th
-    %th
-
-  - @bids.each do |bid|
+- if @bids.any?
+  %table
     %tr
-      %td= bid.time
-      %td= bid.bidder.email
-      %td= bid.amount
-      %td= bid.issue.description
-      %td= link_to 'Show', bid
-      %td= link_to 'Edit', edit_bid_path(bid)
-      %td= link_to 'Destroy', bid, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %th Time
+      %th Bidder
+      %th Amount
+      %th Issue
+      %th
+      %th
+      %th
 
-%br
+    - @bids.each do |bid|
+      %tr
+        %td= bid.time
+        %td= bid.bidder.email
+        %td= bid.amount
+        %td= bid.issue.description
+        %td= link_to 'Show', bid
+        %td= link_to 'Edit', edit_bid_path(bid)
+        %td= link_to 'Destroy', bid, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
-= link_to 'New Bid', new_bid_path
+= link_to 'New Bid', new_bid_path, class: [:btn, :'btn-default']
