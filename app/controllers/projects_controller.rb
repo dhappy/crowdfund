@@ -1,7 +1,7 @@
 require 'pp'
 
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, only: [:edit, :update, :destroy]
 
   # GET /projects
   # GET /projects.json
@@ -12,6 +12,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
+    @project = Project.find_by github_name: params[:github_name]
   end
 
   # GET /projects/new

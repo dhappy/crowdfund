@@ -1,18 +1,17 @@
-%p#notice= notice
+- if not @project
+  %p No project
+- else
+  %p#notice= notice
 
-%ul
-  %li
-    Github name:
-    = link_to @project.github_name, 'https://github.com/%s/%s' % [@project.owner.github_name, @project.github_name]
-  %li= "Name: #{@project.name}"
-  %li= "Description: #{@project.description}"
-  %li= "Owner: #{@project.owner.github_name}"
-  %li
-    Issues:
-    %ul
-      - @project.issues.each do |issue|
-        %li= issue.name
-
-= link_to 'Edit', edit_project_path(@project)
-\|
-= link_to 'Back', projects_path
+  %ul
+    %li
+      Github name:
+      = link_to @project.github_name, 'https://github.com/%s/%s' % [@project.owner.github_name, @project.github_name]
+    %li= "Name: #{@project.name}"
+    %li= "Description: #{@project.description}"
+    %li= "Owner: #{@project.owner.github_name}"
+    %li
+      Issues:
+      %ul
+        - @project.issues.each do |issue|
+          %li= issue.name
