@@ -19,7 +19,7 @@
         .navbar-collapse.collapse
           %ul.nav.navbar-nav
             %li
-            %li{ class: params[:controller] == 'bounties' ? 'active dropdown' : 'dropdown' }
+            -# %li{ class: params[:controller] == 'bounties' ? 'active dropdown' : 'dropdown' }
               %a.dropdown-toggle{ href: '#', data: { toggle: 'dropdown' } }
                 Bounties
                 %b.caret
@@ -33,7 +33,7 @@
                 - if can? :destroy, Bounty
                   %li= link_to 'Delete', delete_bounties_path
 
-            %li{ class: params[:controller] == 'bids' ? 'active dropdown' : 'dropdown' }
+            -# %li{ class: params[:controller] == 'bids' ? 'active dropdown' : 'dropdown' }
               %a.dropdown-toggle{ href: '#', data: { toggle: 'dropdown' } }
                 Bids
                 %b.caret
