@@ -25,7 +25,7 @@ class Project < ActiveRecord::Base
     issues = JSON.parse open("https://api.github.com/repos/%s/%s/issues" % [owner.username, github_name]).read
 
     issues.each do |issue_res|
-      issue = Issue.find_or_create_by project: self, github_id: issue_res['id']
+      issue = Issue.find_or_create_by project: self, github_id: issue_res['number']
       issue.name = issue_res['title']
       issue.url = issue_res['html_url']
       issue.milestone = Milestone.find_or_create_by name: issue_res.try(:[], 'milestone').try(:[], 'title')

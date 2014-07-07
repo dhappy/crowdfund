@@ -1,11 +1,17 @@
 %p#notice= notice
 
-%h1= @issue.name
+%h1
+  = link_to @issue.project.name, @issue.project
+  >
+  = link_to @issue.name, @issue.url
 
-!= RDiscount.new(@issue.description).to_html
+.description
+  != RDiscount.new(@issue.description).to_html
+
+%h2 Bids
 
 %ul
   - @issue.bids.each do |bid|
     %li
-      =# link_to bid.bidder.username, bid.bidder
-      = "#{bid.bidder.username}: #{bid.min}-#{bid.max}hr @ $#{bid.rate}/hr"
+      = link_to bid.bidder.username, 'http://github.com/%s' % bid.bidder.username
+      = ": #{bid.min}-#{bid.max}hr @ $#{bid.rate}/hr"

@@ -12,4 +12,8 @@ class Issue < ActiveRecord::Base
   def total_bounties
     bounties.collect(&:amount).sum
   end
+
+  def url
+    'http://github.com/%s/%s/issues/%s' % [project.owner.username, project.github_name, github_id]
+  end
 end
