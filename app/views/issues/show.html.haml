@@ -1,15 +1,13 @@
 %p#notice= notice
 
-%p
-  %b Name:
-  = @issue.name
-%p
-  %b Description:
-  = @issue.description
-%p
-  %b Milestone:
-  = @issue.milestone
+%h1= @issue.name
 
-= link_to 'Edit', edit_issue_path(@issue)
-\|
-= link_to 'Back', issues_path
+%p= @issue.description
+
+%ul
+  - @issue.bids.each do |bid|
+    %li
+      = bid.bidder.github_name
+      = bid.min
+      -
+      = bid.max
