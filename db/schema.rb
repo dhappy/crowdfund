@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140316144029) do
+ActiveRecord::Schema.define(version: 20140707024556) do
 
   create_table "assignments", force: true do |t|
     t.integer  "organization_id"
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 20140316144029) do
     t.datetime "updated_at"
     t.integer  "project_id"
     t.text     "url"
+    t.integer  "github_id"
   end
 
   add_index "issues", ["project_id"], name: "index_issues_on_project_id"
