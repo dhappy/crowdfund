@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140707024556) do
+ActiveRecord::Schema.define(version: 20140707063842) do
 
   create_table "assignments", force: true do |t|
     t.integer  "organization_id"
@@ -50,6 +50,8 @@ ActiveRecord::Schema.define(version: 20140707024556) do
     t.integer  "issue_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "min"
+    t.decimal  "max"
   end
 
   create_table "bounties", force: true do |t|
