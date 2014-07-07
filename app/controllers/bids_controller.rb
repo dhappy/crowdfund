@@ -31,6 +31,9 @@ class BidsController < ApplicationController
 
     if not ( params[:min].try(:present?) or params[:max].try(:present?) )
       @bid.destroy
+      respond_to do |format|
+        format.html { redirect_to root_path, notice: 'Bid deleted' }
+      end
     else
       respond_to do |format|
         if @bid.update(bid_params)
