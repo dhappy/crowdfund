@@ -1,5 +1,5 @@
 $( function() {
-    $(' input').on( 'change', function() {
-        console.log( 'c' )
+    $('.new_bid input').on( 'blur', function() {
+        $(this).parents( 'form' ).ajaxSubmit()
     } )
 } )

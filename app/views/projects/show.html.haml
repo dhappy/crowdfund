@@ -1,28 +1,32 @@
 - if not @project
   %p No project
 - else
-  %p#notice= notice
+  #project
+    %p#notice= notice
 
-  %h1= link_to @project.github_name, 'https://github.com/%s/%s' % [@project.owner.github_name, @project.github_name]
+    %h1= link_to @project.github_name, 'https://github.com/%s/%s' % [@project.owner.github_name, @project.github_name]
 
-  %p= @project.description
+    %p= @project.description
 
-  %table.table
-    %thead
-      %tr
-        %th{ rowspan: 2 } Milestone
-        %th{ rowspan: 2 } Name
-        %th{ colspan: 2 } Contributed Estimates
-        %th{ colspan: 2 } Your Estimates
-      %tr
-        %th Min
-        %th Max
-        %th Min
-        %th Max
-    - @project.issues.sort_by{ |i| i.milestone.name || 'None' }.group_by(&:milestone).each do |milestone, issues|
-      %tr
-        %td{ rowspan: issues.length }= milestone.name || 'None'
-        = render 'issue_cells', issue: issues.shift
-      - issues.each do |issue|
-        %tr
-          = render 'issue_cells', issue: issue
+    - if @project.issues.any?
+      .row
+        .col-xs-offset-1.col-xs-7 Issue
+        .col-xs-2 Contributed Estimates
+        .col-xs-2 Your Estimates
+      .row
+        .col-xs-offset-8.col-xs-1 Min
+        .col-xs-1 Max
+        .col-xs-1 Min
+        .col-xs-1 Max
+      - @project.issues.sort_by{ |i| i.milestone.name || 'None' }.group_by(&:milestone).each do |milestone, issues|
+        .row
+          .milestone.col-xs-12= milestone.name || 'None'
+        - issues.each do |issue|
+          .row
+            .col-xs-offset-1.col-xs-7= link_to issue.name, issue
+            .col-xs-1= issue.bids.collect(&:min).min
+            .col-xs-1= issue.bids.collect(&:max).max
+            = form_for Bid.new(issue: issue), class: :estimate do |f|
+              = f.hidden_field :issue_id
+              .col-xs-1= f.text_field :min
+              .col-xs-1= f.text_field :max
