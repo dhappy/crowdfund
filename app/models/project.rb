@@ -14,7 +14,7 @@ class Project < ActiveRecord::Base
     project.github_name = params[:github_name]
     project.name = params[:github_name].gsub(/_/, ' ').titleize
     project.description = info['description']
-    project.owner = User.find_or_create_by github_name: params[:owner]
+    project.owner = User.find_or_create_by username: params[:owner]
 
     project.reload_issues
 
