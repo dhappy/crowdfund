@@ -9,13 +9,8 @@
 
   - if devise_mapping.confirmable? && resource.pending_reconfirmation?
     %p= "Currently waiting confirmation for: #{resource.unconfirmed_email}"
-  
-  - omniauth_env = request.env['omniauth.auth']
-  = omniauth_env.nil?
-  - using_omniauth = Authentication.find_by_provider_and_uid(omniauth_env['provider'], omniauth_env['uid']) if omniauth_env
-  - using_omniauth = true
-  
-  - if not using_omniauth
+
+  - if not current_user.password.blank?
     .form-group
       = f.label :password
       %i (leave blank if you don't want to change it)
@@ -25,10 +20,10 @@
       = f.label :password_confirmation
       = f.password_field :password_confirmation, class: :'form-control'
 
-    .form-group
-      = f.label :current_password
-      %i (we need your current password to confirm your changes)
-      = f.password_field :current_password, class: :'form-control'
+  .form-group
+    = f.label :rate
+    %em ($/hr)
+    = f.text_field :rate, class: :'form-control'
 
   .form-group
     = f.submit 'Update', class: [:btn, :'btn-default']

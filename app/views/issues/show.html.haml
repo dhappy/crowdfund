@@ -8,4 +8,4 @@
   - @issue.bids.each do |bid|
     %li
       =# link_to bid.bidder.username, bid.bidder
-      = "#{bid.bidder.username}: #{bid.min}-#{bid.max}"
+      = "#{bid.bidder.username}: #{bid.min}-#{bid.max}hr @ $#{bid.rate}/hr"

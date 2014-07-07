@@ -25,14 +25,21 @@ class BidsController < ApplicationController
   # POST /bids
   # POST /bids.json
   def create
-    @bid = Bid.find_or_create_by bidder: current_user, issue: Issue.find( params[:bid][:issue_id] )
-    respond_to do |format|
-      if @bid.update(bid_params)
-        format.html { redirect_to @bid, notice: 'Bid was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @bid }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @bid.errors, status: :unprocessable_entity }
+    params = bid_params
+
+    @bid = Bid.find_or_create_by bidder: current_user, issue: Issue.find( params[:issue_id] )
+
+    if not ( params[:min].try(:present?) or params[:max].try(:present?) )
+      @bid.destroy
+    else
+      respond_to do |format|
+        if @bid.update(bid_params)
+          format.html { redirect_to @bid, notice: 'Bid was successfully created.' }
+          format.json { render action: 'show', status: :created, location: @bid }
+        else
+          format.html { render action: 'new' }
+          format.json { render json: @bid.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -69,6 +76,6 @@ class BidsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bid_params
-      params.require(:bid).permit(:time, :amount, :issue_id, :min, :max)
+      params.require(:bid).permit(:time, :amount, :issue_id, :min, :max, :rate)
     end
 end

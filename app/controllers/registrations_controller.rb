@@ -1,19 +1,19 @@
 class RegistrationsController < Devise::RegistrationsController
   def update
     @user = current_user
-    account_update_params = devise_parameter_sanitizer.sanitize :account_update
+    params = account_update_params
 
-    if account_update_params[:password].blank?
-      account_update_params.delete 'password'
-      account_update_params.delete 'password_confirmation'
+    if params[:password].blank?
+      params.delete :password
+      params.delete :password_confirmation
     end
 
     successfully_updated =
       if needs_password?(@user, params)
-        @user.update_with_password account_update_params
+        @user.update_with_password params
       else
-        params[:user].delete(:current_password)
-        @user.update_without_password account_update_params
+        params.delete :current_password
+        @user.update_without_password params
       end
 
     if successfully_updated
@@ -34,6 +34,10 @@ class RegistrationsController < Devise::RegistrationsController
   private
   
   def needs_password?(user, params)
-    user.email != params[:user][:email] or params[:user][:password].present?
+    user.email != params[:email] or params[:password].present?
+  end
+
+  def account_update_params
+    params.require(:user).permit(:email, :password, :password_confirmation, :current_password, :rate)
   end
 end
