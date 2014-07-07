@@ -3,15 +3,26 @@
 - else
   %p#notice= notice
 
-  %ul
-    %li
-      Github name:
-      = link_to @project.github_name, 'https://github.com/%s/%s' % [@project.owner.github_name, @project.github_name]
-    %li= "Name: #{@project.name}"
-    %li= "Description: #{@project.description}"
-    %li= "Owner: #{@project.owner.github_name}"
-    %li
-      Issues:
-      %ul
-        - @project.issues.each do |issue|
-          %li= issue.name
+  %h1= link_to @project.github_name, 'https://github.com/%s/%s' % [@project.owner.github_name, @project.github_name]
+
+  %p= @project.description
+
+  %table.table
+    %thead
+      %tr
+        %th{ rowspan: 2 } Milestone
+        %th{ rowspan: 2 } Name
+        %th{ colspan: 2 } Contributed Estimates
+        %th{ colspan: 2 } Your Estimates
+      %tr
+        %th Min
+        %th Max
+        %th Min
+        %th Max
+    - @project.issues.sort_by{ |i| i.milestone.name || 'None' }.group_by(&:milestone).each do |milestone, issues|
+      %tr
+        %td{ rowspan: issues.length }= milestone.name || 'None'
+        = render 'issue_cells', issue: issues.shift
+      - issues.each do |issue|
+        %tr
+          = render 'issue_cells', issue: issue

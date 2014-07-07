@@ -1,0 +1,5 @@
+%td= issue.name
+%td= issue.bids.collect(&:min).min
+%td= issue.bids.collect(&:max).max
+%td
+%td
