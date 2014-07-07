@@ -8,7 +8,7 @@ class RegistrationsController < Devise::RegistrationsController
     end
 
     @user = current_user
-    if @user.update_attributes account_update_params
+    if update_resource @user, account_update_params
       set_flash_message :notice, :updated
       sign_in @user, bypass: true
       redirect_to after_update_path_for @user
