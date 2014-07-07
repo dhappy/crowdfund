@@ -67,8 +67,7 @@
               %li= link_to current_user.full_name, edit_user_registration_path
               %li= link_to "Logout", destroy_user_session_path, method: :delete
             - else
-              %li= link_to "Sign Up", new_user_registration_path
-              %li= link_to "Login", new_user_session_path
+              %li= link_to "Login", omniauth_authorize_path( 'user', 'github' )
 
     .container
       %p#notice.alert.alert-info.hide= notice
