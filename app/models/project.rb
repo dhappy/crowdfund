@@ -22,7 +22,7 @@ class Project < ActiveRecord::Base
   end
 
   def reload_issues
-    issues = JSON.parse open("https://api.github.com/repos/%s/%s/issues" % [owner.github_name, github_name]).read
+    issues = JSON.parse open("https://api.github.com/repos/%s/%s/issues" % [owner.username, github_name]).read
 
     issues.each do |issue_res|
       issue = Issue.find_or_create_by project: self, github_id: issue_res['id']
