@@ -1,5 +1,6 @@
 %td= issue.name
 %td= issue.bids.collect(&:min).min
 %td= issue.bids.collect(&:max).max
-%td
-%td
+= form_for Bid.new(issue: issue), class: :estimate do |f|
+  %td= f.text_field :min
+  %td= f.text_field :max
