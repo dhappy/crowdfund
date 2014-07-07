@@ -11,9 +11,11 @@
     %p= "Currently waiting confirmation for: #{resource.unconfirmed_email}"
   
   - omniauth_env = request.env['omniauth.auth']
-  - omniauth? = Authentication.find_by_provider_and_uid(omniauth_env['provider'], omniauth_env['uid']) if omniauth_env
+  = omniauth_env.nil?
+  - using_omniauth = Authentication.find_by_provider_and_uid(omniauth_env['provider'], omniauth_env['uid']) if omniauth_env
+  - using_omniauth = true
   
-  - if not omniauth?
+  - if not using_omniauth
     .form-group
       = f.label :password
       %i (leave blank if you don't want to change it)
